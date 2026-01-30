@@ -1,11 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-MCB=""
-for i in 1 2 3 4 5; do
-  MCB="$(termux-clipboard-get)"
-  [ -n "$MCB" ] && break
-  sleep 0.2
-done
+MCB="$(termux-clipboard-get)"
 [ -z "$MCB" ] && exit 1
 
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -14,12 +9,9 @@ IP="$(cat "$BASE_DIR/../ip.txt" 2>/dev/null)"
 HOST="${IP%:*}"
 PORT="${IP#*:}"
 
-# enviar y leer OK
-REPLY=$(printf "@%s\n" "$MCB" | nc -w 3 "$HOST" "$PORT")
+# Solo enviar, sin esperar respuesta
+printf "@%s\n" "$MCB" | nc -w 3 "$HOST" "$PORT" 2>/dev/null
 
-if [ "$REPLY" = "OK" ]; then
-    termux-tts-speak -e com.google.android.tts "Enviado"
-    termux-clipboard-set ""
-else
-    termux-tts-speak -e com.google.android.tts "Error"
-fi
+# Feedback genérico
+termux-tts-speak -e com.google.android.tts "Enviado"
+termux-clipboard-set ""
