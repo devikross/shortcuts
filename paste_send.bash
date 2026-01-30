@@ -1,4 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
+termux-tts-speak -e com.google.android.tts "Enviando"
 
 MCB="$(termux-clipboard-get)"
 [ -z "$MCB" ] && exit 1
