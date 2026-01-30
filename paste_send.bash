@@ -1,25 +1,23 @@
-echo "[INFO] Leyendo clipboard..."
-MCB=""
+echo "[INFO] Clipboard → leyendo"
 for i in 1 2 3 4 5; do
   MCB="$(termux-clipboard-get)"
-  echo "[DEBUG] Intento $i → '$MCB'"
+  echo "[DEBUG] intento $i: '$MCB'"
   [ -n "$MCB" ] && break
   sleep 0.2
 done
-
 [ -z "$MCB" ] && { echo "[ERROR] Clipboard vacío"; exit 1; }
 
-echo "[INFO] Leyendo ip.txt..."
+echo "[INFO] IP → leyendo ip.txt"
 IP="$(cat ../../ip.txt 2>/dev/null)"
-[ -z "$IP" ] && { echo "[ERROR] ip.txt vacío o no encontrado"; exit 1; }
+[ -z "$IP" ] && { echo "[ERROR] ip.txt no encontrado o vacío"; exit 1; }
 
 HOST="${IP%:*}"
 PORT="${IP#*:}"
 
-echo "[INFO] Enviando a $HOST:$PORT"
+echo "[INFO] Envío → $HOST:$PORT"
 echo "[DATA] @$MCB"
 
-echo "@$MCB" | nc "$HOST" "$PORT"
+printf "@%s\n" "$MCB" | nc -w 1 "$HOST" "$PORT"
 
-echo "[INFO] Limpiando clipboard"
+echo "[INFO] Clipboard → limpiando"
 termux-clipboard-set ""
