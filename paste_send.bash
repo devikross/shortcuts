@@ -10,7 +10,7 @@ done
 [ -z "$MCB" ] && { echo "[ERROR] Clipboard vacío"; exit 1; }
 
 echo "[INFO] Leyendo ip.txt..."
-IP="$(cat ../ip.txt 2>/dev/null)"
+IP="$(cat ../../ip.txt 2>/dev/null)"
 [ -z "$IP" ] && { echo "[ERROR] ip.txt vacío o no encontrado"; exit 1; }
 
 HOST="${IP%:*}"
