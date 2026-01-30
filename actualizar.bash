@@ -3,12 +3,12 @@
 # Ir a la carpeta de shortcuts
 cd "$HOME/.shortcuts" || exit 1
 
-echo "[INFO] Actualizando desde GitHub..."
+# Aviso de inicio
+termux-tts-speak -e com.google.android.tts "Iniciando actualización"
 
-# Traer cambios remotos
+# Traer cambios remotos y sobrescribir todo local
 git fetch origin
-
-# Sobrescribir todo local con lo remoto
 git reset --hard origin/main
 
-echo "[INFO] Actualización completada."
+# Aviso de fin
+termux-tts-speak -e com.google.android.tts "Actualización completada"
