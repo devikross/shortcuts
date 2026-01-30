@@ -22,7 +22,7 @@ REPLY=$(printf "@%s\n" "$MCB" | nc "$HOST" "$PORT")
 # Feedback por voz y limpiar clipboard
 if [ "$REPLY" = "OK" ]; then
     termux-tts-speak -e com.google.android.tts "Enviado"
-    termux-clipboard-set "" 
+    # termux-clipboard-set "" 
 else
     termux-tts-speak -e com.google.android.tts "Error"
 fi
