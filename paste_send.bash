@@ -11,7 +11,7 @@ done
 [ -z "$MCB" ] && { echo "[ERROR] Clipboard vacío"; exit 1; }
 
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
-IP_FILE="$BASE_DIR/../../ip.txt"
+IP_FILE="$BASE_DIR/../ip.txt"
 
 echo "[INFO] IP → leyendo $IP_FILE"
 IP="$(cat "$IP_FILE" 2>/dev/null)"
