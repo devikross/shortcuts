@@ -26,8 +26,8 @@ echo "[DATA] @$MCB"
 REPLY=$(printf "@%s\n" "$MCB" | nc -w 2 "$HOST" "$PORT")
 
 if [ "$REPLY" = "OK" ]; then
-    echo "[INFO] Enviado y recibido correctamente"
+    printf '\a'
     termux-clipboard-set ""
 else
-    echo "[WARN] No se recibió confirmación"
+    printf '\a\a\a'
 fi
