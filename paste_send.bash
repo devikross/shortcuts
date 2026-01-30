@@ -11,7 +11,7 @@ HOST="${IP%:*}"
 PORT="${IP#*:}"
 
 # Solo enviar, sin esperar respuesta
-printf "@%s\n" "$MCB" | nc -w 3 "$HOST" "$PORT" 2>/dev/null
+printf "$MCB" | nc -w 3 "$HOST" "$PORT" 2>/dev/null
 
 # Feedback genérico
 termux-tts-speak -e com.google.android.tts "Enviado"
