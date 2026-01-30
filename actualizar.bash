@@ -11,4 +11,4 @@ git fetch origin
 git reset --hard origin/main
 
 # Aviso de fin
-termux-tts-speak -e com.google.android.tts "Actualización completada"
+termux-tts-speak -e com.google.android.tts "Actualización completa"
