@@ -7,5 +7,3 @@ HOST="${IP%:*}"
 PORT="${IP#*:}"
 
 printf "%s\n" "$COMANDO" | nc -w 3 "$HOST" "$PORT" 2>/dev/null
-
-termux-tts-speak -e com.google.android.tts "Espacio"
