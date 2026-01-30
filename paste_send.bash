@@ -23,7 +23,11 @@ PORT="${IP#*:}"
 echo "[INFO] Envío → $HOST:$PORT"
 echo "[DATA] @$MCB"
 
-printf "@%s\n" "$MCB" | nc -w 2 "$HOST" "$PORT"
+REPLY=$(printf "@%s\n" "$MCB" | nc -w 2 "$HOST" "$PORT")
 
-echo "[INFO] Clipboard → limpiando"
-termux-clipboard-set ""
+if [ "$REPLY" = "OK" ]; then
+    echo "[INFO] Enviado y recibido correctamente"
+    termux-clipboard-set ""
+else
+    echo "[WARN] No se recibió confirmación"
+fi
