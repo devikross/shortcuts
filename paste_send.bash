@@ -17,7 +17,7 @@ HOST="${IP%:*}"
 PORT="${IP#*:}"
 
 # Enviar y esperar confirmación
-REPLY=$(printf "@%s\n" "$MCB" | nc -w 2 "$HOST" "$PORT")
+REPLY=$(printf "@%s\n" "$MCB" | nc "$HOST" "$PORT")
 
 # Feedback por voz y limpiar clipboard
 if [ "$REPLY" = "OK" ]; then
